@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 router.get('/google/callback', passport.authenticate('google', { session: false }), (req, res) => {
     const token = jwt.sign({ id: req.user._id }, 'jwt_secret');
-    res.redirect(`http://localhost:3000/dashboard?token=${token}`);
+    res.redirect(`${process.env.FRONTEND_URL}/dashboard?token=${token}`);
 });
 
 
