@@ -8,7 +8,6 @@ const passport = require('passport');
 
 // Signup route
 router.post('/signup', async (req, res) => {
-    console.log("HI")
   const { email, password, name } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
   const newUser = new User({ email, password: hashedPassword, name });

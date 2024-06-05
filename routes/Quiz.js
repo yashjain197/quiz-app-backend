@@ -6,14 +6,12 @@ const Question = require('../models/Question');
 
 router.get('/start', auth, async (req, res) => {
   const questions = await Question.find().limit(20);
-  console.log(questions)
   res.json(questions);
 });
 
 // routes/quiz.js (continued)
 router.post('/submit', auth, async (req, res) => {
     const { answers } = req.body;
-    console.log(req.user.id)
     let correct = 0;
     let total = 20;
   
@@ -23,7 +21,6 @@ router.post('/submit', auth, async (req, res) => {
         correct++;
       }
     }
-    console.log(correct + " out of " + total)
     res.json({ correct, total, message: `You answered ${correct} out of ${total} correctly.` });
   });
   
